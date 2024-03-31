@@ -1,24 +1,36 @@
-name: 'The name of your action here'
-description: 'Provide a description here'
-author: 'Your name or organization here'
-
-# Add your action's branding here. This will appear on the GitHub Marketplace.
-branding:
-  icon: 'heart'
-  color: 'red'
-
-# Define your inputs here.
+name: 'GitHub Advanced Security (GHAS) Integrations'
+description: 'Integrate your organization's applications, with GHAS'
 inputs:
-  milliseconds:
-    description: 'Your input description here'
+  github-auth-token:  # Token to authenticate workflow
+    description: 'The token that allows authentication/authorization to your Github account'
     required: true
-    default: '1000'
-
-# Define your outputs here.
-outputs:
-  time:
-    description: 'Your output description here'
-
+    type: string
+  state: # Identify the states returned from the API.
+    description: 'Provide the state of the alerts.'
+    required: true
+    type: string
+  dependabot-alert-scope: # Get Dependabot Alerts from source
+    description: 'The get the alerts from Dependabot'
+    required: false
+    type: string
+  dependabot-alert-number: # Get a DependAbot Alerty by the alert number.
+    description: 'The number of the Dependabot Alert within a repo.'
+    required: false
+    type: number
+  dependabot-alert-number-repo:
+    description: 'The name of the repo, to search for the DependAbot Alert, by number.'
+    required: false
+    type: string
+  dependabot-alert-number-owner:
+    description: 'The owner of the repo, to search for the DependAbot Alert, by number.'
+    required: false
+    type: string
+  # slack-channel:
+  #  description: 'Send Events to your Slack Channel'
+  #  required: true
+# outputs:
+  # time: # id of output
+  #  description: 'The time we greeted you'
 runs:
-  using: node20
+  using: 'node20'
   main: dist/index.js
